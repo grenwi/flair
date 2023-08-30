@@ -514,8 +514,9 @@ class TransformerBaseEmbeddings(Embeddings[Sentence]):
             [[t.text for t in tokens] for tokens in flair_tokens],
             stride=self.stride,
             return_overflowing_tokens=self.allow_long_sentences,
-            truncation=self.truncate,
-            padding=PaddingStrategy.MAX_LENGTH if self.force_max_length else PaddingStrategy.LONGEST,
+            truncation=True, #self.truncate,
+            padding='max_length', #PaddingStrategy.MAX_LENGTH if self.force_max_length else PaddingStrategy.LONGEST,
+            max_length=128,
             return_tensors="pt",
             **tokenizer_kwargs,
         )
